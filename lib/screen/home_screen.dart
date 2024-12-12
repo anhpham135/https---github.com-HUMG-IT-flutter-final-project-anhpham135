@@ -25,79 +25,50 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: deviceSize.height * 0.3,
                 width: deviceSize.width,
                 color: colors.primary,
-                child: const Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: const Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      DisplayWhiteText(
+                          text: "Dec 12, 2024",
+                          fontSize: 20,
+                          fontWeight: FontWeight.normal
+                          ),
+                      Gap(10),
+                      DisplayWhiteText(
+                          text: "My Tasks List",
+                          fontSize: 40,
+                          fontWeight: FontWeight.normal
+                          ),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 130,
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
                   children: [
-                    DisplayWhiteText(
-                        text: "Dec 12, 2024",
-                        fontSize: 20,
-                        fontWeight: FontWeight.normal),
-                    Gap(10),
-                    DisplayWhiteText(
-                        text: "My Tasks List",
-                        fontSize: 40,
-                        fontWeight: FontWeight.normal),
+                    Container(
+                      width: deviceSize.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: colors.primaryContainer
+                      ),
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: 8,
+                        itemBuilder: (ctx, index){
+                        return const Text("home");
+                      }),
+                    )
                   ],
+                                ),
                 ),
               ),
             ],
-          ),
-          Positioned(
-            top: deviceSize.height * 0.3,
-            left: 0,
-            right: 0,
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              physics: const AlwaysScrollableScrollPhysics(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: deviceSize.width,
-                    height: deviceSize.height * 0.3,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: colors.primaryContainer,
-                    ),
-                    child: ListView.builder(
-                      padding: EdgeInsets.zero,
-                      itemCount: 8,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (ctx, index) {
-                        return const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 8.0),
-                          child: Text("Home"),
-                        );
-                      },
-                    ),
-                  ),
-                  const Gap(20),
-                  Text(
-                    "Completed",
-                    style: context.textTheme.headlineMedium,
-                  ),
-                  Container(
-                    width: deviceSize.width,
-                    height: deviceSize.height * 0.3,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: colors.primaryContainer,
-                    ),
-                    child: ListView.builder(
-                      padding: EdgeInsets.zero,
-                      itemCount: 8,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (ctx, index) {
-                        return const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 8.0),
-                          child: Text("Home"),
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
           ),
         ],
       ),
