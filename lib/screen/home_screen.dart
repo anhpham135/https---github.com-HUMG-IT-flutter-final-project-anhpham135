@@ -25,8 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: deviceSize.height * 0.3,
                 width: deviceSize.width,
                 color: colors.primary,
-                child: const Center(
-                  child: Column(
+                child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       DisplayWhiteText(
@@ -34,25 +33,28 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontSize: 20,
                           fontWeight: FontWeight.normal
                           ),
-                      Gap(10),
                       DisplayWhiteText(
                           text: "My Tasks List",
                           fontSize: 40,
-                          fontWeight: FontWeight.normal
                           ),
                     ],
-                  ),
                 ),
               ),
-              Positioned(
-                top: 130,
+            ],
+          ),
+          Positioned(
+                top: 170,
+                left: 0,
+                right: 0,
                 child: SingleChildScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),
                   padding: const EdgeInsets.all(20),
                   child: Column(
-                  children: [
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                     Container(
                       width: deviceSize.width,
+                      height: deviceSize.height * 0.3,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: colors.primaryContainer
@@ -60,16 +62,44 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: ListView.builder(
                         shrinkWrap: true,
                         itemCount: 8,
+                        padding: EdgeInsets.zero,
                         itemBuilder: (ctx, index){
                         return const Text("home");
-                      }),
-                    )
+                      },
+                      ),
+                    ),
+                  const Gap(20),
+                  Text(
+                    "Completed", 
+                    style: context.textTheme.headlineMedium,
+                    ),
+                    const Gap(20),
+                    Container(
+                      width: deviceSize.width,
+                      height: deviceSize.height * 0.3,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: colors.primaryContainer
+                      ),
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: 8,
+                        padding: EdgeInsets.zero,
+                        itemBuilder: (ctx, index){
+                        return const Text("home");
+                      },
+                      ),
+                    ),
+                    const Gap(20),
+                    ElevatedButton(
+                      onPressed: () {},
+                      // style: ElevatedButton.styleFrom(backgroundColor: Colors.orange), 
+                      child: const Text("add new task"),
+                    ),
                   ],
-                                ),
+                  ),
                 ),
               ),
-            ],
-          ),
         ],
       ),
     );
