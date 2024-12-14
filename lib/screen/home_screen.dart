@@ -1,5 +1,6 @@
 import 'package:final1/utils/extensions.dart';
 import 'package:final1/widgets/display_white_text.dart';
+import 'package:final1/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -26,80 +27,59 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: deviceSize.width,
                 color: colors.primary,
                 child: const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      DisplayWhiteText(
-                          text: "Dec 12, 2024",
-                          fontSize: 20,
-                          fontWeight: FontWeight.normal
-                          ),
-                      DisplayWhiteText(
-                          text: "My Tasks List",
-                          fontSize: 40,
-                          ),
-                    ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    DisplayWhiteText(
+                        text: "Dec 12, 2024",
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal),
+                    DisplayWhiteText(
+                      text: "My Tasks List",
+                      fontSize: 40,
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
           Positioned(
-                top: 170,
-                left: 0,
-                right: 0,
-                child: SingleChildScrollView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                    Container(
-                      width: deviceSize.width,
-                      height: deviceSize.height * 0.3,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: colors.primaryContainer
-                      ),
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 8,
-                        padding: EdgeInsets.zero,
-                        itemBuilder: (ctx, index){
-                        return const Text("home");
-                      },
-                      ),
-                    ),
-                  const Gap(20),
-                  Text(
-                    "Completed", 
-                    style: context.textTheme.headlineMedium,
+            top: deviceSize.height * 0.2,
+            left: 0,
+            right: 0,
+            child: SafeArea(
+              child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const DisplayListOfTasks(tasks: []),
+                    const Gap(20),
+                    Text(
+                      "Completed",
+                      style: context.textTheme.headlineMedium,
                     ),
                     const Gap(20),
-                    Container(
-                      width: deviceSize.width,
-                      height: deviceSize.height * 0.3,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: colors.primaryContainer
-                      ),
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 8,
-                        padding: EdgeInsets.zero,
-                        itemBuilder: (ctx, index){
-                        return const Text("home");
-                      },
-                      ),
+                    const DisplayListOfTasks(
+                      tasks: [],
+                      isCompletedTask: true,
                     ),
                     const Gap(20),
                     ElevatedButton(
                       onPressed: () {},
-                      // style: ElevatedButton.styleFrom(backgroundColor: Colors.orange), 
-                      child: const Text("add new task"),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: colors.primary,
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: DisplayWhiteText(text: 'Add New Task'),
+                      ),
                     ),
                   ],
-                  ),
                 ),
               ),
+            ),
+          ),
         ],
       ),
     );
