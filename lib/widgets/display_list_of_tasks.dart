@@ -1,7 +1,10 @@
 import 'package:final1/data/data.dart';
 import 'package:final1/utils/extensions.dart';
+import 'package:final1/utils/utils.dart';
 import 'package:final1/widgets/common_container.dart';
 import 'package:flutter/material.dart';
+
+import 'task_title.dart';
 
 class DisplayListOfTasks extends StatelessWidget {
   const DisplayListOfTasks({
@@ -31,12 +34,16 @@ class DisplayListOfTasks extends StatelessWidget {
                 style: context.textTheme.headlineSmall,
               ),
             )
-          : ListView.builder(
+          : ListView.separated(
               shrinkWrap: true,
               itemCount: tasks.length,
               padding: EdgeInsets.zero,
               itemBuilder: (ctx, index) {
-                return const Text("home");
+                final task = tasks[index];
+                return TaskTitle(tasks: task);
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return const Divider(thickness: 1.5);
               },
             ),
     );

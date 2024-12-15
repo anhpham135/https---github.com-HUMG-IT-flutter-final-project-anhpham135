@@ -1,5 +1,5 @@
-import 'package:final1/utils/extensions.dart';
-import 'package:final1/widgets/display_white_text.dart';
+import 'package:final1/data/data.dart';
+import 'package:final1/utils/utils.dart';
 import 'package:final1/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -53,7 +53,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const DisplayListOfTasks(tasks: []),
+                    const DisplayListOfTasks(tasks: [
+                      Tasks(
+                        title: 'meet Mr Q',
+                        note: 'note',
+                        time: '16:43',
+                        date: 'Dec, 15',
+                        isCompleted: false,
+                        category: TaskCategories.orther,
+                      ),
+                      Tasks(
+                        title: 'go to concert',
+                        note: 'note',
+                        time: '17:43',
+                        date: 'Dec, 15',
+                        isCompleted: false,
+                        category: TaskCategories.social,
+                      )
+                    ]),
                     const Gap(20),
                     Text(
                       "Completed",
@@ -61,7 +78,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     const Gap(20),
                     const DisplayListOfTasks(
-                      tasks: [],
+                      tasks: [
+                        Tasks(
+                          title: 'meetting (flutter)',
+                          note: 'note',
+                          time: '16:43',
+                          date: 'Dec, 15',
+                          isCompleted: true,
+                          category: TaskCategories.educaiton,
+                        ),
+                        Tasks(
+                          title: 'Gym Phạm Đức Anh',
+                          note: 'note',
+                          time: '17:43',
+                          date: 'Dec, 15',
+                          isCompleted: true,
+                          category: TaskCategories.health,
+                        )
+                      ],
                       isCompletedTask: true,
                     ),
                     const Gap(20),
