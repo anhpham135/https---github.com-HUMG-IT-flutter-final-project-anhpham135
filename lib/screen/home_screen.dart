@@ -55,8 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     const DisplayListOfTasks(tasks: [
                       Tasks(
-                        title: 'meet Mr Q',
-                        note: 'note',
+                        title: 'meet Mr Qin',
+                        note: '',
                         time: '16:43',
                         date: 'Dec, 15',
                         isCompleted: false,
@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Tasks(
                         title: 'go to concert',
-                        note: 'note',
+                        note: 'this is note',
                         time: '17:43',
                         date: 'Dec, 15',
                         isCompleted: false,
@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       tasks: [
                         Tasks(
                           title: 'meetting (flutter)',
-                          note: 'note',
+                          note: 'this is note',
                           time: '16:43',
                           date: 'Dec, 15',
                           isCompleted: true,
@@ -89,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         Tasks(
                           title: 'Gym Phạm Đức Anh',
-                          note: 'note',
+                          note: 'push day!!!!',
                           time: '17:43',
                           date: 'Dec, 15',
                           isCompleted: true,

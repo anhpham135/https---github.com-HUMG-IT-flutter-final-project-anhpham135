@@ -1,5 +1,6 @@
 import 'package:final1/data/models/tasks.dart';
 import 'package:final1/utils/extensions.dart';
+import 'package:final1/widgets/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:final1/data/data.dart';
 import 'package:flutter/material.dart';
@@ -26,21 +27,14 @@ class TaskTitle extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Container(
-            padding: const EdgeInsets.all(9.0),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: tasks.category.color.withOpacity(background0pacity),
-              border: Border.all(
-                width: 2,
+          CircleContainer(
+            color: tasks.category.color.withOpacity(background0pacity),
+            child: Center(
+              child: Icon(
+                tasks.category.icon,
                 color: tasks.category.color.withOpacity(icon0pacity),
               ),
             ),
-            child: Center(
-                child: Icon(
-              tasks.category.icon,
-              color: tasks.category.color.withOpacity(icon0pacity),
-            )),
           ),
           const Gap(16),
           Expanded(
@@ -71,6 +65,6 @@ class TaskTitle extends StatelessWidget {
         ],
       ),
     );
-    ;
+    // ignore: dead_code
   }
 }

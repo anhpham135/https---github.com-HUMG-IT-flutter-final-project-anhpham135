@@ -2,6 +2,7 @@ import 'package:final1/data/data.dart';
 import 'package:final1/utils/extensions.dart';
 import 'package:final1/utils/utils.dart';
 import 'package:final1/widgets/common_container.dart';
+import 'package:final1/widgets/task_details.dart';
 import 'package:flutter/material.dart';
 
 import 'task_title.dart';
@@ -40,7 +41,20 @@ class DisplayListOfTasks extends StatelessWidget {
               padding: EdgeInsets.zero,
               itemBuilder: (ctx, index) {
                 final task = tasks[index];
-                return TaskTitle(tasks: task);
+                return InkWell(
+                    onLongPress: () {
+                      //todo, delete (task)
+                    },
+                    onTap: () async {
+                      //todo-show task details
+
+                      await showModalBottomSheet(
+                          context: context,
+                          builder: (ctx) {
+                            return TaskDetails(task: task);
+                          });
+                    },
+                    child: TaskTitle(tasks: task));
               },
               separatorBuilder: (BuildContext context, int index) {
                 return const Divider(thickness: 1.5);
