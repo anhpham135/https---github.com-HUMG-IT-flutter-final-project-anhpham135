@@ -1,10 +1,14 @@
+import 'package:final1/config/routes/routes.dart';
 import 'package:final1/data/data.dart';
 import 'package:final1/utils/utils.dart';
 import 'package:final1/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatefulWidget {
+  static HomeScreen builder(BuildContext context, GoRouterState state) =>
+      const HomeScreen();
   const HomeScreen({super.key});
 
   @override
@@ -55,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     const DisplayListOfTasks(tasks: [
                       Tasks(
-                        title: 'meet Mr Qin',
+                        title: 'meet Mr Yasuo',
                         note: '',
                         time: '16:43',
                         date: 'Dec, 15',
@@ -81,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       tasks: [
                         Tasks(
                           title: 'meetting (flutter)',
-                          note: 'this is note',
+                          note: 'B2 test',
                           time: '16:43',
                           date: 'Dec, 15',
                           isCompleted: true,
@@ -100,9 +104,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     const Gap(20),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () => context.push(RoutesLocation.createTask),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: colors.primary,
+                        backgroundColor: Theme.of(context).colorScheme.primary,
                       ),
                       child: const Padding(
                         padding: EdgeInsets.all(8.0),

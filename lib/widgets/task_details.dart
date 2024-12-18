@@ -1,10 +1,8 @@
 import 'package:final1/data/data.dart';
-import 'package:final1/screen/home_screen.dart';
 import 'package:final1/utils/utils.dart';
 import 'package:final1/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:path/path.dart';
 
 class TaskDetails extends StatelessWidget {
   const TaskDetails({super.key, required this.task});
