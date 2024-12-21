@@ -1,5 +1,4 @@
 import 'package:final1/data/models/tasks.dart';
-import 'package:final1/utils/extensions.dart';
 import 'package:final1/widgets/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:final1/data/data.dart';
@@ -12,7 +11,6 @@ class TaskTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = context.textTheme;
     final double icon0pacity = tasks.isCompleted ? 0.3 : 0.5;
     final background0pacity = tasks.isCompleted ? 0.1 : 0.3;
     final textDecoration =

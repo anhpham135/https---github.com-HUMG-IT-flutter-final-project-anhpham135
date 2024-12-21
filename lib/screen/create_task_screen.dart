@@ -27,8 +27,8 @@ class CreateTaskScreen extends StatelessWidget {
             const Gap(16),
             const CommonTextField(
               //thêm ghi chú
-              title: 'Wanna note ?',
-              hintText: 'Write this down...',
+              title: 'Note ?',
+              hintText: 'Write Note',
               maxLines: 6,
             ),
             const Gap(60),

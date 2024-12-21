@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     const DisplayListOfTasks(tasks: [
                       Tasks(
-                        title: 'meet Mr Yasuo',
+                        title: 'meet Tien Anh',
                         note: '',
                         time: '16:43',
                         date: 'Dec, 15',

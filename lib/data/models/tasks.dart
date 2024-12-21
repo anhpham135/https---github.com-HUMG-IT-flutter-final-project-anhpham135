@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+
 import 'package:final1/utils/utils.dart';
 
 class Tasks extends Equatable {
@@ -29,5 +30,29 @@ class Tasks extends Equatable {
       date,
       isCompleted,
     ];
+  }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      TaskKey.id: id,
+      TaskKey.title: title,
+      TaskKey.note: note,
+      TaskKey.time: time,
+      TaskKey.date: date,
+      TaskKey.category: category.name,
+      TaskKey.isCompleted: isCompleted,
+    };
+  }
+
+  factory Tasks.fromJson(Map<String, dynamic> map) {
+    return Tasks(
+      id: map[TaskKey.id],
+      title: map[TaskKey.title],
+      note: map[TaskKey.note],
+      time: map[TaskKey.time],
+      date: map[TaskKey.date],
+      category: TaskCategories.stringToCategory(map[TaskKey.category]),
+      isCompleted: map[TaskKey.isCompleted],
+    );
   }
 }
