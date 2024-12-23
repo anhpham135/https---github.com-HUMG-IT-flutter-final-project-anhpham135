@@ -23,7 +23,7 @@ class TaskDatasource {
     final path = join(dbPath, DBKeys.dbName);
     return openDatabase(
       path,
-      version: 1,
+      version: 1, // Tăng version 1 lên 2
       onCreate: _onCreate,
     );
   }
@@ -31,14 +31,13 @@ class TaskDatasource {
   Future<void> _onCreate(Database db, int version) async {
     await db.execute('''
       CREATE TABLE ${DBKeys.dbTable} (
-      ${DBKeys.idColumn}INTEGER PRIMARY KEY AUTOINCREMENT,
+      ${DBKeys.idColumn} INTEGER PRIMARY KEY AUTOINCREMENT,
       ${DBKeys.titleColumn} TEXT,
       ${DBKeys.noteColumn} TEXT,
       ${DBKeys.dateColumn} TEXT,
       ${DBKeys.timeColumn} TEXT,
-      ${DBKeys.titleColumn} TEXT,
       ${DBKeys.categoryColumn} TEXT,
-      ${DBKeys.isCompletedColumn} INTEGER,
+      ${DBKeys.isCompletedColumn} INTEGER
       )
     ''');
   }

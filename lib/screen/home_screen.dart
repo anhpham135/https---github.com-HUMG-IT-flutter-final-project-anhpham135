@@ -1,25 +1,25 @@
 import 'package:final1/config/routes/routes.dart';
 import 'package:final1/data/data.dart';
+import 'package:final1/provider/provider.dart';
 import 'package:final1/utils/utils.dart';
 import 'package:final1/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerWidget {
   static HomeScreen builder(BuildContext context, GoRouterState state) =>
       const HomeScreen();
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final colors = context.colorScheme;
     final deviceSize = context.deviceSize;
+    final taskState = ref.watch(taskProvider);
+    final completedTasks = _completedTasks(taskState.tasks);
+    final incompletedTasks = _incompletedTasks(taskState.tasks);
 
     return Scaffold(
       body: Stack(
@@ -57,49 +57,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const DisplayListOfTasks(tasks: [
-                      Tasks(
-                        title: 'meet Tien Anh',
-                        note: '',
-                        time: '16:43',
-                        date: 'Dec, 15',
-                        isCompleted: false,
-                        category: TaskCategories.orther,
-                      ),
-                      Tasks(
-                        title: 'go to concert',
-                        note: 'this is note',
-                        time: '17:43',
-                        date: 'Dec, 15',
-                        isCompleted: false,
-                        category: TaskCategories.social,
-                      )
-                    ]),
+                    DisplayListOfTasks(
+                      tasks: incompletedTasks,
+                    ),
                     const Gap(20),
                     Text(
                       "Completed",
                       style: context.textTheme.headlineMedium,
                     ),
                     const Gap(20),
-                    const DisplayListOfTasks(
-                      tasks: [
-                        Tasks(
-                          title: 'meetting (flutter)',
-                          note: 'B2 test',
-                          time: '16:43',
-                          date: 'Dec, 15',
-                          isCompleted: true,
-                          category: TaskCategories.educaiton,
-                        ),
-                        Tasks(
-                          title: 'Gym Phạm Đức Anh',
-                          note: 'push day!!!!',
-                          time: '17:43',
-                          date: 'Dec, 15',
-                          isCompleted: true,
-                          category: TaskCategories.health,
-                        )
-                      ],
+                    DisplayListOfTasks(
+                      tasks: completedTasks,
                       isCompletedTask: true,
                     ),
                     const Gap(20),
@@ -121,5 +89,26 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
+  }
+
+  List<Tasks> _completedTasks(List<Tasks> tasks) {
+    final List<Tasks> filteredTasks = [];
+    for (var task in tasks) {
+      if (task.isCompleted) {
+        filteredTasks.add(task);
+      }
+    }
+    return filteredTasks;
+  }
+
+  List<Tasks> _incompletedTasks(List<Tasks> tasks) {
+    final List<Tasks> filteredTasks = [];
+    for (var task in tasks) {
+      // tasks chưa hoàn thành
+      if (!task.isCompleted) {
+        filteredTasks.add(task);
+      }
+    }
+    return filteredTasks;
   }
 }
