@@ -92,7 +92,7 @@ class _CreateTaskScreenState extends ConsumerState<CreateTaskScreen> {
       await ref.read(taskProvider.notifier).createTask(task).then((value) {
         if (mounted) {
           AppAlerts.displaySnackBar(context, 'Task created successfully');
-          Future.delayed(const Duration(seconds: 1), () {
+          Future.delayed(const Duration(microseconds: 700000), () {
             if (mounted) {
               context.go(RoutesLocation.home);
             }

@@ -58,7 +58,11 @@ class TaskTitle extends StatelessWidget {
           ),
           Checkbox(
             value: tasks.isCompleted,
-            onChanged: (value) {},
+            onChanged: (value) async {
+              if (onCompleted != null) {
+                await onCompleted!(value);
+              }
+            },
           )
         ],
       ),

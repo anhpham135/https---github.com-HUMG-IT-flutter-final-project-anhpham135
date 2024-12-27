@@ -23,7 +23,7 @@ class SelectDateTime extends ConsumerWidget {
             hintText: DateFormat.yMMMd().format(date),
             readOnly: true,
             suffixIcon: IconButton(
-                onPressed: () => _selecDate(context, ref),
+                onPressed: () => Helpers.selecDate(context, ref),
                 icon: const FaIcon(FontAwesomeIcons.calendar)),
           ),
         ),
@@ -51,19 +51,5 @@ void _selecTime(BuildContext context, WidgetRef ref) async {
   );
   if (pickedTime != null) {
     ref.read(timeProvider.notifier).state = pickedTime; // Cập nhật sate
-  }
-}
-
-void _selecDate(BuildContext context, WidgetRef ref) async {
-  final initialDate = ref.read(dateProvider);
-  DateTime? pickedDate = await showDatePicker(
-    context: context,
-    initialDate: initialDate, // lấy giá trị ban đầu từ Provider
-    firstDate: DateTime(2023),
-    lastDate: DateTime(2100),
-  );
-
-  if (pickedDate != null) {
-    ref.read(dateProvider.notifier).state = pickedDate; // Cập nhật sate
   }
 }
