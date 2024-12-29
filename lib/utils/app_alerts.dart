@@ -31,10 +31,13 @@ class AppAlerts {
         AppAlerts.displaySnackBar(context, 'Task deleted !!!');
         // xóa task
         await ref.read(taskProvider.notifier).deleteTask(task).then((value) {
-          context.pop();
-          Navigator.of(context).pop();
+          if (context.mounted) {
+            context.pop();
+          }
+          if (context.mounted) {
+            Navigator.of(context).pop();
+          }
         });
-
         // thực hiện logic xóa task
       },
       child: const Text('YES'),

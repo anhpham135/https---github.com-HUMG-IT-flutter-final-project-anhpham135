@@ -26,11 +26,13 @@ class TaskTitle extends StatelessWidget {
       child: Row(
         children: [
           CircleContainer(
-            color: tasks.category.color.withOpacity(background0pacity),
+            color: tasks.category.color
+                .withAlpha((background0pacity * 225).toInt()),
             child: Center(
               child: Icon(
                 tasks.category.icon,
-                color: tasks.category.color.withOpacity(icon0pacity),
+                color:
+                    tasks.category.color.withAlpha((icon0pacity * 225).toInt()),
               ),
             ),
           ),

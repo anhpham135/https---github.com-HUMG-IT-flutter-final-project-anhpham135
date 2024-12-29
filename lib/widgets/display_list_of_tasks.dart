@@ -20,12 +20,12 @@ class DisplayListOfTasks extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final deviceSize = context.deviceSize;
+    final deviceSize = MediaQuery.of(context).size;
     final height =
         isCompletedTask ? deviceSize.height * 0.25 : deviceSize.height * 0.3;
     final emptyTasksMessage = isCompletedTask
-        ? 'There is no competed task yet !'
-        : 'There is no task to do !';
+        ? 'There is no completed task yet!'
+        : 'There is no task to do!';
 
     return CommonContainer(
       height: height,
@@ -33,7 +33,7 @@ class DisplayListOfTasks extends ConsumerWidget {
           ? Center(
               child: Text(
                 emptyTasksMessage,
-                style: context.textTheme.headlineSmall,
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
             )
           : ListView.separated(
@@ -43,36 +43,29 @@ class DisplayListOfTasks extends ConsumerWidget {
               itemBuilder: (ctx, index) {
                 final task = tasks[index];
                 return InkWell(
-                  onLongPress: () {
-                    AppAlerts.showDeleteAlertDialog(
-                      context,
-                      ref,
-                      task,
-                    ); //--------------------------------------------------------
-                    //todo, delete (task)
-                  },
+                  onLongPress: () => AppAlerts.showDeleteAlertDialog(
+                    context,
+                    ref,
+                    task,
+                  ),
                   onTap: () async {
-                    //todo-show task details
-
                     await showModalBottomSheet(
-                        context: context,
-                        builder: (ctx) {
-                          return TaskDetails(task: task);
-                        });
+                      context: context,
+                      builder: (ctx) => TaskDetails(task: task),
+                    );
                   },
                   child: TaskTitle(
                     tasks: task,
                     onCompleted: (value) async {
-                      await ref
-                          .read(taskProvider.notifier)
-                          .updateTask(task)
-                          .then((value) {
+                      final notifier = ref.read(taskProvider.notifier);
+                      final isCompleted = task.isCompleted;
+                      await notifier.updateTask(task);
+                      if (context.mounted) {
                         AppAlerts.displaySnackBar(
-                            context,
-                            task.isCompleted
-                                ? 'Task incompleted'
-                                : 'Task completed');
-                      });
+                          context,
+                          isCompleted ? 'Task incompleted' : 'Task completed',
+                        );
+                      }
                     },
                   ),
                 );
