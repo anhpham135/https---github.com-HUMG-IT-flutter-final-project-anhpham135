@@ -27,56 +27,58 @@ Bài tập lớn nhằm:
 
 - Mỗi đối tượng cần có ít nhất các thuộc tính cơ bản như:
   - **id**: Định danh duy nhất cho mỗi đối tượng.
-
+  task sẽ gồm id, category và note ![task_create_screen](task_screen.png)
   - **title**: Mô tả ngắn gọn hoặc tên của đối tượng.
   - **Trạng thái hoặc thuộc tính bổ sung**: Ví dụ, trạng thái hoàn thành cho công việc, hoặc số lượng cho sản phẩm.
-- Sử dụng `dart data class generator extension` hoặc các công cụ tương tự để tạo ra các class model. Hiểu rõ về data model được sử dụng trong ứng dụng bao gồm các thuộc tính, phương thức và cách sử dụng.
+      ![home screen](home_screen1.png)
+  - ứng dụng cho phép chọn công việc đã hoàn thành (completed) hay chưa hoàn thành (incompleted)
 
 
 ### 2. Giao diện người dùng
 - Thiết kế giao diện đơn giản, dễ sử dụng, thân thiện với người dùng.
-  ![alt text](image.png)
+  ![giao diện ứng dụng](image.png)
 - Yêu cầu các màn hình cơ bản:
   - Danh sách các đối tượng.
+        ![danh sách công việc](home_screen1-1.png)
   - Chi tiết đối tượng (có thể tạo, sửa, xóa).
-  - Cập nhật thông tin cá nhân và thay đổi mật khẩu (nếu ứng dụng có chức năng xác thực).
-
+        ![chi tiết đối tượng](home_screen1-2.png)
 ### 3. Tích hợp API
-Ứng dụng cần tích hợp với backend qua các API phù hợp với loại lưu trữ dữ liệu đã chọn (ví dụ: Firebase, RESTful API, GraphQL, MySQL v.v.). Cụ thể:
-**- Nếu sử dụng Firebase hoặc các dịch vụ tương tự**
-  -	Thiết lập Firebase Authentication nếu ứng dụng yêu cầu đăng nhập và xác thực người dùng.
-  -	Sử dụng Firebase Firestore hoặc Realtime Database để lưu trữ dữ liệu và thực hiện các thao tác CRUD.
-  - Đảm bảo tích hợp Firebase Storage nếu ứng dụng yêu cầu lưu trữ các tệp phương tiện (ảnh, video).
-  - Xử lý các lỗi API từ Firebase (ví dụ: lỗi xác thực, quyền truy cập) và hiển thị thông báo thân thiện.
+Ứng dụng cần tích hợp với backend qua các API phù hợp với loại lưu trữ dữ liệu đã chọn (ví dụ: Firebase, RESTful API, GraphQL, MySQL v.v.). Cụ thể: ứng dụng TodoApp sử dụng SQFlite để lưu trữ các task được tạo
 
-**- Nếu sử dụng cơ sở dữ liệu quan hệ như MySQL hoặc tương tự**
-  - Kết nối với backend sử dụng các API RESTful hoặc GraphQL để giao tiếp với cơ sở dữ liệu.
-  - Thực hiện các thao tác CRUD với dữ liệu thông qua các endpoint API.
-  - Cấu hình xác thực và phân quyền nếu backend hỗ trợ.
-  - Xử lý các lỗi truy vấn (ví dụ: lỗi kết nối, lỗi SQL) và hiển thị thông báo lỗi phù hợp cho người dùng.
-
-**- Nếu sử dụng lưu trữ cục bộ dựa trên file JSON dạng NoSQL như localstore**
-  - Sử dụng localstore hoặc thư viện tương tự để lưu trữ dữ liệu cục bộ dưới dạng file JSON trên thiết bị.
+**- Ứng dụng sử dụng SqfLite**
+  lợi ích khi sử dụng SqfLite
+  - Sqflite là giải pháp lý tưởng cho các ứng dụng cần lưu trữ dữ liệu cục bộ, chẳng hạn như danh sách việc cần làm, lịch sử tìm kiếm,    hoặc ứng dụng ghi chú.
+  - API của Sqflite rất thân thiện với lập trình viên và hỗ trợ tốt các chức năng cơ bản của SQLite.
+  - Dữ liệu lưu trữ cục bộ trong ứng dụng, không cần kết nối mạng
+  - SqfLite được tối ưu hóa cho cả Android và IOS, giúp xử lý công việc nhanh và hiệu quả 
   - Đảm bảo ứng dụng có thể thực hiện các thao tác CRUD và đồng bộ dữ liệu khi ứng dụng online.
   - Kiểm tra và xử lý các lỗi lưu trữ (ví dụ: lỗi khi ghi/đọc file) và hiển thị thông báo phù hợp cho người dùng.
+      ![khi không nhập tiêu đề thì sẽ có thông báo lỗi](error_create_task.png)
 
 ### 4. Kiểm thử tự động và CI/CD
 - Tạo các bài kiểm thử tự động bao gồm kiểm thử đơn vị (unit test) và kiểm thử giao diện (widget test) để kiểm tra các chức năng cơ bản của ứng dụng.
 - Sử dụng GitHub Actions để tự động chạy các kiểm thử khi có thay đổi mã nguồn.
 
-## Công nghệ và Thư viện sử dụng
-Sinh viên cần liệt kê một số công nghệ và thư viện cần sử dụng trong quá trình phát triển ứng dụng, ví dụ:
-- **Flutter**: Để xây dựng giao diện người dùng.
-- **Dio hoặc http**: Để gọi API và xử lý HTTP request.
-- **localstore**: Để lưu trữ dữ liệu cục bộ, giúp ứng dụng có thể hoạt động offline.
+## Công nghệ và Thư viện sử dụng trong project
+
 - **Test Framework (flutter_test)**: Sử dụng để viết các bài kiểm thử tự động.
 - **GitHub Actions**: Để tự động hóa quy trình kiểm thử khi có thay đổi mã nguồn.
+- **equatable: ^2.0.7** : So sánh đối tượng đơn giản hơn
+- **flex_color_scheme: ^8.0.1**: giúp tạo và quản lý các chủ đề giao diện (theme) trong ứng dụng một cách nhanh chóng
+- **flutter_riverpod: ^2.6.1**: quản lý trạng thái (state management)
+- **font_awesome_flutter: ^10.8.0**: sử dụng các biểu tượng (icons) từ Font Awesome
+- **gap: ^3.0.1**: tạo khoảng cách (spacing) giữa các widget một cách dễ dàng và rõ ràng
+- **go_router: ^14.6.1**: giúp quản lý điều hướng (navigation) trong ứng dụng một cách dễ dàng
+- **google_fonts: ^6.2.1**: tích hợp các font chữ từ Google Fonts vào ứng dụng (font chữ được sử dụng trong ứng dụng là fontFamily)
+- **intl: ^0.20.1**: quản lý các chuỗi văn bản, định dạng ngày giờ, số 
+- **path: ^1.9.0**: cung cấp các phương thức tiện dụng để thao tác với các chuỗi đường dẫn (path)
+- **sqflite: ^2.4.1**: lưu trữ và truy xuất dữ liệu trên thiết bị di động
 
 ## Báo cáo kết quả
 Sinh viên cần tạo tài liệu báo cáo kết quả, hướng dẫn cài đặt ứng dụng trên thiết bị di động hoặc máy ảo để giám khảo có thể kiểm tra ứng dụng một cách dễ dàng. Ví dụ:
 1. Tải mã nguồn từ repository.
     ```bash
-    git clone <đường dẫn tới repo>
+    [git clone](https://github.com/anhpham135/https---github.com-HUMG-IT-flutter-final-project-anhpham135.git)
     ```
 
 2. Cài đặt các dependencies:
@@ -95,7 +97,8 @@ Sinh viên cần tạo tài liệu báo cáo kết quả, hướng dẫn cài đ
     flutter test
     ```
 8. Screenshots hoặc video demo về ứng dụng và quá trình kiểm thử tự động.
-
+## video demo 
+- [TodoApp](https://drive.google.com/file/d/1TBBDzANb11IFCf-wy6r0p1FCHXjwTc2v/view?usp=drive_link)
 ## Yêu cầu nộp bài
 - **Source code**: Đẩy toàn bộ mã nguồn lên GitHub repository cá nhân và chia sẻ quyền truy cập.
 - **Kiểm thử tự động**: Sinh viên cần viết các bài kiểm thử tự động cho ứng dụng. Các bài kiểm thử cần được tổ chức rõ ràng và dễ hiểu trong thư mục `test` với hậu tố `_test.dart`. Các bài kiểm thử đơn vị (unit test) cần kiểm tra các chức năng cơ bản của ứng dụng và đảm bảo chất lượng mã nguồn. Kiểm thử UI (widget test) cần được viết để kiểm tra giao diện người dùng và các tương tác người dùng cơ bản.
@@ -140,14 +143,14 @@ Sinh viên cần tạo tài liệu báo cáo kết quả, hướng dẫn cài đ
 - GitHub Actions CI/CD hoàn thiện, bao gồm kiểm thử và các bước phân tích mã nguồn (nếu thêm), đảm bảo mã luôn ổn định.
 
 **Tóm tắt các mức điểm:**
-- **5/10**: Build thành công, kiểm thử cơ bản chạy được.
-- **6/10**: CRUD cơ bản với một đối tượng.
-- **7/10**: CRUD và quản lý trạng thái (hiển thị giao diện cơ bản).
+- **5/10**: Build thành công, kiểm thử cơ bản chạy được. 
+- **6/10**: CRUD cơ bản với một đối tượng. 
+- **7/10**: CRUD và quản lý trạng thái (hiển thị giao diện cơ bản). 
 - **8/10**: CRUD, trạng thái, và tích hợp API/CSDL với thông báo lỗi.
 - **9/10**: Hoàn thiện kiểm thử CRUD, trạng thái, tích hợp API/CSDL; UI thân thiện.
 - **10/10**: Tối ưu hóa hoàn chỉnh, UI/UX mượt mà, CI/CD đầy đủ và ổn định.
 
-## Tự đánh giá điểm: X/10
+## Tự đánh giá điểm: 7/10 (chưa tạo được file test, chưa tối ưu hóa ứng dụng, ứng dụng hoạt động chưa đủ mượt mà)
 Sinh viên cần tự đánh giá mức độ hoàn thiện của ứng dụng và so sánh với tiêu chí đánh giá để xác định điểm cuối cùng. Điểm tự đánh giá sẽ được sử dụng như một tiêu chí tham khảo cho giảng viên đánh giá cuối cùng.
 
 Chúc các bạn hoàn thành tốt bài tập lớn và khám phá thêm nhiều kiến thức bổ ích qua dự án này!
