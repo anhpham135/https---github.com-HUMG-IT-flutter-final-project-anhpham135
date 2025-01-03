@@ -10,6 +10,7 @@
 
 ## Giới thiệu
 Đây là yêu cầu của bài tập lớn cho một trong hai học phần **Phát triển ứng dụng di động đa nền tảng 1 (mã học phần 7080325) và Phát triển ứng dụng cho thiết bị di động + BTL (mã học phần 7080115)**. Sinh viên sẽ xây dựng một ứng dụng di động hoàn chỉnh sử dụng Flutter và Dart, áp dụng các kiến thức đã học về lập trình giao diện người dùng, quản lý trạng thái, tích hợp API hoặc/và CSDL, kiểm thử tự động và CI/CD với GitHub Actions.
+- **video demo** : [ToDoApp](https://drive.google.com/file/d/1TBBDzANb11IFCf-wy6r0p1FCHXjwTc2v/view?usp=drive_link)
 
 ## Mục tiêu
 Bài tập lớn nhằm:
@@ -22,15 +23,19 @@ Bài tập lớn nhằm:
 
 ## Yêu cầu ứng dụng
 ### 1. Chức năng CRUD
-- Ứng dụng cần cung cấp đầy đủ các chức năng CRUD (Create, Read, Update, Delete) cho một đối tượng bất kỳ (ví dụ: sản phẩm, người dùng, ghi chú, sự kiện, v.v.).
+- Ứng dụng ToDoApp cung cấp đầy đủ các chức năng CRUD (Create, Read, Update, Delete) cho một đối tượng bất kỳ (ví dụ: sản phẩm, người dùng, ghi chú, sự kiện, v.v.).
+
 - Mỗi đối tượng cần có ít nhất các thuộc tính cơ bản như:
   - **id**: Định danh duy nhất cho mỗi đối tượng.
+
   - **title**: Mô tả ngắn gọn hoặc tên của đối tượng.
   - **Trạng thái hoặc thuộc tính bổ sung**: Ví dụ, trạng thái hoàn thành cho công việc, hoặc số lượng cho sản phẩm.
 - Sử dụng `dart data class generator extension` hoặc các công cụ tương tự để tạo ra các class model. Hiểu rõ về data model được sử dụng trong ứng dụng bao gồm các thuộc tính, phương thức và cách sử dụng.
 
+
 ### 2. Giao diện người dùng
 - Thiết kế giao diện đơn giản, dễ sử dụng, thân thiện với người dùng.
+  ![alt text](image.png)
 - Yêu cầu các màn hình cơ bản:
   - Danh sách các đối tượng.
   - Chi tiết đối tượng (có thể tạo, sửa, xóa).
